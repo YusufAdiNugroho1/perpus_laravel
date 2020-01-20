@@ -92,7 +92,7 @@ class PinjamController extends Controller
             $denda = 0;
         }
 
-        return $denda;
+        return view('kembali',['kembali' => $denda]);
     
     }
     function kurangi_stok($db, $buku_id)
@@ -110,6 +110,29 @@ class PinjamController extends Controller
     {
         DB::table('pinjam')->where('pinjam_id',$id)->delete();
         
+        return redirect('/pinjam');
+    }
+
+    public function edit($id)
+    {
+        // mengambil data rak berdasarkan id yang dipilih
+        $pinjam = DB::table('pinjam')->where('pinjam_id',$id)->get();
+        
+        $buku = Buku::all();
+        $anggota = Anggota::all();
+        // passing data rak yang didapat ke view edit.blade.php
+        return view('edit_pinjam',['pinjam' => $pinjam, 'buku' => $buku, 'anggota' =>$anggota]);
+ 
+    }
+ 
+    // update data rak
+    public function update(Request $request)
+    {
+        // update data rak
+        DB::table('pinjam')->where('pinjam_id',$request->id)->update([
+            'rak_nama' => $request->rak_nama,
+        ]);
+        // alihkan halaman ke halaman rak
         return redirect('/pinjam');
     }
 }

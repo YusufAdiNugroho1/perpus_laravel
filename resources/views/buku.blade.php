@@ -33,7 +33,7 @@
             <td>{{ $b->kategori->kategori_nama }}</td>
             <td>{{ $b->buku_deskripsi }}</td>
             <td>{{ $b->buku_jumlah }}</td>
-            <td width="20%"><img width="70%" class="buku-cover" src="{{URL::asset('image/ $b->buku_cover ') }}"></td>
+            <td width="20%"><img width="150px" src="{{ url('/data_file/'.$b->buku_cover) }}"></td>
             <td>
                 <a href="/buku/edit_buku/{{ $b->buku_id }}" class="btn btn-edit">Edit</a>
                 <a href="/buku/hapus/{{ $b->buku_id }}" class="btn btn-hapus">Hapus</a>

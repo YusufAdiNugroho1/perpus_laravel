@@ -16,8 +16,10 @@
 	<div class="content">
 		<h3>Tambah Data anggota</h3>
 		<form action="/anggota/store" method="post">{{ csrf_field() }}
-		Anggota<br><input type="text" name="anggota">
-		Alamat<br><input type="text" name="alamat">
+		<p>Anggota</p>
+			<p><input type="text" name="anggota"></p>
+		<p>Alamat</p>
+			<p><input type="text" name="alamat"></p>
 		<p>Jenis Kelamin</p>
         <p>
             <select name="jk">
@@ -25,7 +27,8 @@
                 <option value="P">Perempuan</option>
             </select>
         </p>
-        Telepon <input type="text" name="telp"><br><br>
+        <p>Telepon<p>
+        	<p><input type="text" name="telp"></p>
 		<input type="submit" value="Simpan Data" class="btn btn-submit">
 		<input type="reset" class="btn btn-submit" value="Batal">
 		</form>

@@ -23,7 +23,7 @@
                      <option value="{{ $b->kategori_id }}">{{ $b->kategori_nama }}</option>
                 @endforeach
             </select><br>
-        <p>Deskripsi</p><input type="text" name="deskripsi"><br>
+        <p>Deskripsi</p><input name="deskripsi"><br>
         <p>Jumlah</p><input type="text" name="jumlah"><br>
         <p>cover</p><input type="file" name="cover"><br><br>
         <input type="submit" value="Simpan Data" class="btn btn-submit">

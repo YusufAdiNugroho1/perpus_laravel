@@ -62,6 +62,29 @@ class RakBukuController extends Controller
 		return redirect('/rak_buku');
 	}
 
+    public function edit($id)
+    {
+        // mengambil data rak berdasarkan id yang dipilih
+        $rak_buku = DB::table('rak_buku')->where('id',$id)->get();
+        $rak = Rak::all();
+        $buku = Buku::all();
+        // passing data rak yang didapat ke view edit.blade.php
+        return view('edit_rak_buku',['rak_buku' => $rak_buku, 'rak' => $rak, 'buku' => $buku]);
+ 
+    }
+ 
+    // update data rak
+    public function update(Request $request)
+    {
+        // update data rak
+        DB::table('rak_buku')->where('id',$request->id)->update([
+            'rak_nama' => $request->nama,
+            'buku_judul' => $request->judul
+        ]);
+        // alihkan halaman ke halaman rak
+        return redirect('/rak_buku');
+    }
+
     public function cari(Request $request)
     {
         // menangkap data pencarian

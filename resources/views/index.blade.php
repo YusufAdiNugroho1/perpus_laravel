@@ -27,7 +27,7 @@
 		@foreach($rak_buku as $rb)
 		<tr>
 			<td>{{ $rb->buku_judul }}</td>
-			<td>{{ $rb->buku_cover }}</td>
+			<td><img width="150px" src="{{ url('/data_file/'.$rb->buku_cover) }}"></td>
 			<td>{{ $rb->rak_nama }}</td>
 			<td>{{ $rb->buku_jumlah }}</td>
 		</tr>

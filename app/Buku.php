@@ -16,6 +16,6 @@ class Buku extends Model
     	return $this->belongsTo(Kategori::class, 'kategori_id', 'kategori_id');
     }
     protected $fillable = [
-    	"buku_id","buku_judul"
+    	"buku_id","buku_judul","buku_cover"
     ];
 }

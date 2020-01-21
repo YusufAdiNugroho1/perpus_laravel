@@ -17,7 +17,6 @@
             @foreach($kembali as $kem)
             <form action="/list-pengembalian" method="post">{{ csrf_field() }}
             <input type="hidden" name="pinjam_id" value="{{ $kem->pinjam_id }}">
-            <input type="hidden" name="tgl_kembali" value="{{ $kem->tgl_kembali }}">
 
             <p>Judul</p>
                 <p><input type="text" name="judul" value="{{ $kem->buku_judul }}" disabled></p>
@@ -28,7 +27,7 @@
             <p>Tanggal Jatuh Tempo</p>
                 <p><input type="date" name="jt" value="{{ $kem->tgl_jatuh_tempo }}" disabled></p>
             <p>Tanggal Kembali</p>
-                <p><input type="date" name="kembali" value="{{ $kem->tgl_kembali }}" disabled></p>
+                <p><input type="date" name="kembali" value="{{date('Y-m-d')}}" disabled></p>
             <p>Denda</p>
                 <p><input type="text" name="denda" value="" disabled></p>
             <input type="submit" value="Simpan Data" class="btn btn-submit">

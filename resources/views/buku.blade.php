@@ -41,6 +41,8 @@
         </tr>
         @endforeach
     </table>
+    <br>
+    {{ $buku->links() }}
 </div>
 </body>
 </html>

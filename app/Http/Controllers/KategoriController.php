@@ -10,7 +10,7 @@ class KategoriController extends Controller
 {
     public function kategori()
     {
-    	$kategori = DB::table('kategori')->get();
+    	$kategori = DB::table('kategori')->paginate(10);
 
     	return view('kategori',['kategori' => $kategori]);
     }

@@ -16,7 +16,7 @@ class BukuController extends Controller
 		// ->select('buku.buku_judul', 'kategori.kategori_nama', 'kategori.kategori_id','buku.buku_deskripsi', 'buku.buku_jumlah' ,'buku.buku_cover', 'buku.buku_id')
   //   	->get();
         $buku = Buku::with('kategori')->get();
-        $buku = Buku::get();
+        $buku = Buku::paginate(10);
         // dd($buku);
 
     	return view('buku',['buku' => $buku]);
@@ -29,6 +29,7 @@ class BukuController extends Controller
         // ->select('*')
         // ->get();
         $kategori = Kategori::all();
+
 
         return view('tambah_buku',['kategori' => $kategori]);
     }
@@ -54,7 +55,7 @@ class BukuController extends Controller
         // mengambil data buku berdasarkan id yang dipilih
         $buku = DB::table('buku')->where('buku_id',$id)->get();
         // passing data buku yang didapat ke view edit.blade.php
-        $kategori = Kategori::where('kategori_id', $id)->get();
+        $kategori = Kategori::all();
         // ambil data dari kategori
         return view('edit_buku',['buku' => $buku, 'kategori' => $kategori]);
  

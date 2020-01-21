@@ -33,6 +33,8 @@
         </tr>
         @endforeach
     </table>
+    <br>
+    {{ $rak->links() }}
 </div>
 </body>
 </html>

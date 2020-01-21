@@ -24,14 +24,11 @@ class PinjamController extends Controller
 
     public function kembali()
     {
-        $kembali = DB::select("
-            SELECT pinjam.*,pinjam.pinjam_id as id_pinjam, buku.buku_id ,buku.buku_judul, anggota.anggota_nama,
-            (SELECT tgl_kembali FROM kembali JOIN pinjam ON kembali.pinjam_id=pinjam.pinjam_id WHERE kembali.pinjam_id=id_pinjam) as tgl_kembali
-            FROM pinjam
-            JOIN buku ON buku.buku_id = pinjam.buku_id
-            JOIN anggota ON anggota.anggota_id = pinjam.anggota_id
+        $kembali = DB::select("SELECT anggota.anggota_nama, buku.*, pinjam.* FROM pinjam 
+        LEFT JOIN buku ON pinjam.buku_id = buku.buku_id 
+        LEFT JOIN anggota ON pinjam.anggota_id = anggota.anggota_id
+        WHERE pinjam.pinjam_id = 30
         ");
-
         return view('kembali',['kembali' => $kembali]);
     }
 
@@ -39,10 +36,7 @@ class PinjamController extends Controller
     {
         // insert data ke table anggota
         DB::table('kembali')->insert([
-            'buku_id' => $request->judul,
-            'anggota-id' => $request->nama, 
             'pinjam_id' => $request->pinjam,
-            'tgl_jatuh_tempo' => $request->jt,
             'tgl_kembali' => $request->kembali,
             'denda' => $request->denda
         ]);
@@ -116,12 +110,17 @@ class PinjamController extends Controller
     public function edit($id)
     {
         // mengambil data rak berdasarkan id yang dipilih
-        $pinjam = DB::table('pinjam')->where('pinjam_id',$id)->get();
-        
-        $buku = Buku::all();
-        $anggota = Anggota::all();
+        $pinjam = DB::select("
+            SELECT pinjam.*,pinjam.pinjam_id as id_pinjam, buku.buku_id ,buku.buku_judul, anggota.anggota_nama,
+            (SELECT tgl_kembali FROM kembali JOIN pinjam ON kembali.pinjam_id=pinjam.pinjam_id WHERE kembali.pinjam_id=id_pinjam) as tgl_kembali
+            FROM pinjam
+            JOIN buku ON buku.buku_id = pinjam.buku_id
+            JOIN anggota ON anggota.anggota_id = pinjam.anggota_id
+            WHERE pinjam.pinjam_id = 27
+        ");
+
         // passing data rak yang didapat ke view edit.blade.php
-        return view('edit_pinjam',['pinjam' => $pinjam, 'buku' => $buku, 'anggota' =>$anggota]);
+        return view('edit_pinjam',['pinjam' => $pinjam]);
  
     }
  

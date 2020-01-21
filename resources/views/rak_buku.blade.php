@@ -35,6 +35,8 @@
         </tr>
         @endforeach
     </table>
+    <br>
+    {{ $rak_buku->links() }}
 </div>
 </body>
 </html>

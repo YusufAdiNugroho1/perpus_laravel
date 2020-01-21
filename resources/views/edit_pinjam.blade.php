@@ -2,7 +2,7 @@
 <html>
 <head>
 	@include('includes.head')
-	<title>Edit Rak</title>
+	<title>Edit Pinjam</title>
 	<link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}">
 </head>
 <body>
@@ -14,23 +14,21 @@
 	</div>
 
 	<div class="content">
-		<h3>Edit Rak</h3>
+		<h3>Edit Pinjam</h3>
 		@foreach($pinjam as $p)
 		<form action="/pinjam/update" method="post">
 		{{ csrf_field() }}
-		<input type="hidden" name="id" value="{{ $p->pinjam_id }}"> <br/>
+		<input type="hidden" name="pinjam_id" value="{{ $p->pinjam_id }}">
+		
 		<p>Judul</p>
-                <p><input type="text" name="judul" value="{{ $p->buku_judul }}" disabled></p>
-            <p>Anggota</p>
-                <p><input type="text" name="nama" value="{{ $p->anggota_nama}}" disabled></p>
-            <p>Tanggal Pinjam</p>
-                <p><input type="date" name="pinjam" value="{{ $p->tgl_pinjam }}" disabled></p>
-            <p>Tanggal Jatuh Tempo</p>
-                <p><input type="date" name="jt" value="{{ $p->tgl_jatuh_tempo }}" disabled></p>
-            <p>Tanggal pbali</p>
-                <p><input type="date" name="pbali" value="{{ $p->tgl_kembali }}" disabled></p>
-            <p>Denda</p>
-                <p><input type="text" name="denda" value="" disabled></p>
+            <p><input type="text" name="judul" required="required" value="{{ $p->buku_judul }}" ></p>
+        <p>Anggota</p>
+            <p><input type="text" name="nama" required="required" value="{{ $p->anggota_nama}}" ></p>
+        <p>Tanggal Pinjam</p>
+            <p><input type="date" name="pinjam" required="required" value="{{ $p->tgl_pinjam }}" ></p>
+        <p>Tanggal Jatuh Tempo</p>
+            <p><input type="date" name="jt" required="required" value="{{ $p->tgl_jatuh_tempo }}" ></p>
+
 		<input type="submit" value="Simpan Data" class="btn btn-submit">
 	</form>
 	@endforeach

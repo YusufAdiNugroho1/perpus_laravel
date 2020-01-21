@@ -27,7 +27,7 @@ class RakBukuController extends Controller
     	->join('buku', 'buku.buku_id', '=', 'rak_buku.buku_id')
     	->join('rak', 'rak_buku.rak_id', '=', 'rak.rak_id')
     	->select('rak.rak_nama', 'buku.buku_judul', 'buku.buku_jumlah', 'buku.buku_cover', 'rak_buku.id')
-    	->get();
+    	->paginate(10);
 
     	return view('rak_buku',['rak_buku' => $rak_buku]);
     }

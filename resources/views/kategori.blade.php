@@ -33,6 +33,8 @@
         </tr>
         @endforeach
     </table>
+    <br>
+    {{ $kategori->links() }}
 </div>
 </body>
 </html>

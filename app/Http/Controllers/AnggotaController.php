@@ -9,7 +9,7 @@ class AnggotaController extends Controller
 {
     public function anggota()
     {
-    	$anggota = DB::table('anggota')->get();
+    	$anggota = DB::table('anggota')->paginate(10);
 
     	return view('anggota',['anggota' => $anggota]);
     }

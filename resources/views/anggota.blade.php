@@ -38,6 +38,8 @@
         </tr>
         @endforeach
     </table>
+    <br>
+    {{ $anggota->links() }}
 </div>
 </body>
 </html>

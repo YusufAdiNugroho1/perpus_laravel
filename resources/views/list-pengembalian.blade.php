@@ -36,6 +36,8 @@
         </tr>
         @endforeach
     </table>
+    <br>
+    {{ $pengembalian->links() }}
 </div>
 </body>
 </html>

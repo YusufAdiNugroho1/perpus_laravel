@@ -87,27 +87,6 @@ table.data tr:hover:not(:first-child) {
 table.data tr:not(:frist-child):nth-of-type(odd) {
 	background-color: #f9f9f9;
 }
-.pagination {
-  display: inline-block;
-}
-
-.pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-.pagination a.active {
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 5px;
-}
-
-.pagination a:hover:not(.active) {
-  background-color: #ddd;
-  border-radius: 5px;
-}
 .form {
 	background: #42775A;
 	border-radius: 5px;
@@ -116,6 +95,15 @@ table.data tr:not(:frist-child):nth-of-type(odd) {
 	color: #fff;
 	margin: 0 auto;
 	width: 430px;
+}
+.pagination li{
+	float: left;
+	list-style-type: none;
+	margin:5px;
+}
+.pagination a {
+	text-decoration: none;
+	color: black;
 }
 input, textarea, select {
 	width:100%;

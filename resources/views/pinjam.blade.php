@@ -32,20 +32,22 @@
             <td>{{ $p->anggota_nama }}</td>
             <td>{{ $p->tgl_pinjam }}</td>
             <td>{{ $p->tgl_jatuh_tempo }}</td>
-            <td>@if (count($p->tgl_kembali))
-                    {{ $p->tgl_kembali }}
-                @else
+            <td>@if (empty($p->tgl_kembali))
                     -
+                @else
+                    {{ $p->tgl_kembali }}
                 @endif</td>
             <td>  
-                @if (count($p->tgl_kembali))
-                    Kembali
-                @else
+                @if (empty($p->tgl_kembali))
                     Pinjam
+                @else
+                    Kembali
                 @endif </td>
             <td width="30%">
-                <a href="/pinjam/kembali/{{ $p->pinjam_id }}" class="btn btn-tambah">Kembali</a>
-                <a href="/pinjam/edit_pinjam/{{ $p->pinjam_id }}" class="btn btn-edit">Edit</a>
+                @if (empty($p->tgl_kembali))
+                    <a href="/pinjam/kembali/{{ $p->pinjam_id }}" class="btn btn-tambah">Kembali</a>
+                    <a href="/pinjam/edit_pinjam/{{ $p->pinjam_id }}" class="btn btn-edit">Edit</a>
+                @endif
                 <a href="/pinjam/hapus/{{ $p->pinjam_id }}" class="btn btn-hapus">Hapus</a>
             </td>
         </tr>

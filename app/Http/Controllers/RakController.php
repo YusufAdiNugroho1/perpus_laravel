@@ -9,7 +9,7 @@ class RakController extends Controller
 {
     public function rak()
     {
-    	$rak = DB::table('rak')->get();
+    	$rak = DB::table('rak')->paginate(10);
 
     	return view('rak',['rak' => $rak]);
     }

@@ -15,28 +15,38 @@
 
 	<div class="content">
 		<h3>Edit Letak Buku</h3>
-		@foreach($rak_buku as $rb)
 		<form action="/rak_buku/update" method="post">
 		{{ csrf_field() }}
-		<input type="hidden" name="id" value="{{ $rb->id }}"> <br/>
+		<input type="hidden" name="id" value="{{ $rak_buku->id }}"> <br/>
 
 		<p>Nama Rak </p>
 			<p><select name="nama">
                 @foreach ($rak as $r) :
-                     <option value="{{ $r->rak_id }}">{{ $r->rak_nama }}</option>
+
+                @if ($r->rak_id == $rak_buku->rak_id)
+                    <option selected value="{{ $r->rak_id }}">{{ $r->rak_nama }}</option>
+                @else
+                	<option value="{{ $r->rak_id }}">{{ $r->rak_nama }}</option>
+                @endif
+
                 @endforeach
             </select></p>
 
          <p>Buku Judul </p>
-         	<p><select name="buku">
+         	<p><select name="judul">
                 @foreach ($buku as $b) :
-                     <option value="{{ $b->buku_id }}">{{ $b->buku_judul }}</option>
+
+                @if ($b->buku_id == $rak_buku->buku_id)
+                    <option selected value="{{ $b->buku_id }}">{{ $b->buku_judul }}</option>
+                @else
+                	<option value="{{ $b->buku_id }}">{{ $b->buku_judul }}</option>
+                @endif
+                
                 @endforeach
             </select></p>
             
 		<input type="submit" value="Simpan Data" class="btn btn-submit">
 	</form>
-	@endforeach
 	</div>
 </div>
 </body>

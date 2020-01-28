@@ -8,6 +8,8 @@ class Buku extends Model
 {
     protected $table = 'buku';
 
+    protected $primaryKey = 'buku_id';
+    
     public $timestamps = false;
 
     public function kategori(){

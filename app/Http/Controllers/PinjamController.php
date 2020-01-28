@@ -22,14 +22,13 @@ class PinjamController extends Controller
     	return view('pinjam', ['pinjam' => $pinjam]);
     }
 
-    public function kembali()
+    public function kembali($id)
     {
-        $kembali = DB::select("SELECT anggota.anggota_nama, buku.*, pinjam.* FROM pinjam 
-        LEFT JOIN buku ON pinjam.buku_id = buku.buku_id 
-        LEFT JOIN anggota ON pinjam.anggota_id = anggota.anggota_id
-        WHERE pinjam.pinjam_id = 30
-        ");
-        return view('kembali',['kembali' => $kembali]);
+        $kembali = DB::table('pinjam')->where('pinjam_id',$id)->first();
+        $buku = Buku::find($kembali->buku_id);
+        $anggota = Anggota::find($kembali->anggota_id);
+
+        return view('kembali',['kembali' => $kembali, 'buku' => $buku, 'anggota' => $anggota]);
     }
 
     public function list_pengembalian(Request $request)
@@ -110,17 +109,12 @@ class PinjamController extends Controller
     public function edit($id)
     {
         // mengambil data rak berdasarkan id yang dipilih
-        $pinjam = DB::select("
-            SELECT pinjam.*,pinjam.pinjam_id as id_pinjam, buku.buku_id ,buku.buku_judul, anggota.anggota_nama,
-            (SELECT tgl_kembali FROM kembali JOIN pinjam ON kembali.pinjam_id=pinjam.pinjam_id WHERE kembali.pinjam_id=id_pinjam) as tgl_kembali
-            FROM pinjam
-            JOIN buku ON buku.buku_id = pinjam.buku_id
-            JOIN anggota ON anggota.anggota_id = pinjam.anggota_id
-            WHERE pinjam.pinjam_id = 27
-        ");
+        $pinjam = DB::table('pinjam')->where('pinjam_id',$id)->first();
+        $buku = Buku::all();
+        $anggota = Anggota::all();
 
         // passing data rak yang didapat ke view edit.blade.php
-        return view('edit_pinjam',['pinjam' => $pinjam]);
+        return view('edit_pinjam',['pinjam' => $pinjam, 'buku' => $buku, 'anggota' => $anggota]);
  
     }
  
@@ -128,8 +122,11 @@ class PinjamController extends Controller
     public function update(Request $request)
     {
         // update data rak
-        DB::table('pinjam')->where('pinjam_id',$request->id)->update([
-            'rak_nama' => $request->rak_nama,
+        DB::table('pinjam')->where('pinjam_id',$request->pinjam_id)->update([
+            'buku_id' => $request->judul,
+            'anggota_id' => $request->nama,
+            'tgl_pinjam' => $request->pinjam,
+            'tgl_jatuh_tempo' => $request->jt
         ]);
         // alihkan halaman ke halaman rak
         return redirect('/pinjam');

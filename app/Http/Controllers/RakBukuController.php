@@ -16,7 +16,7 @@ class RakBukuController extends Controller
         ->join('buku', 'buku.buku_id', '=', 'rak_buku.buku_id')
         ->join('rak', 'rak_buku.rak_id', '=', 'rak.rak_id')
         ->select('rak.rak_nama', 'buku.buku_judul', 'buku.buku_jumlah', 'buku.buku_cover', 'rak_buku.id')
-        ->get();
+        ->paginate(10);
 
         return view('rak_buku',['rak_buku' => $rak_buku]);
     }
@@ -65,7 +65,7 @@ class RakBukuController extends Controller
     public function edit($id)
     {
         // mengambil data rak berdasarkan id yang dipilih
-        $rak_buku = DB::table('rak_buku')->where('id',$id)->get();
+        $rak_buku = DB::table('rak_buku')->where('id',$id)->first();
         $rak = Rak::all();
         $buku = Buku::all();
         // passing data rak yang didapat ke view edit.blade.php
@@ -78,8 +78,8 @@ class RakBukuController extends Controller
     {
         // update data rak
         DB::table('rak_buku')->where('id',$request->id)->update([
-            'rak_nama' => $request->nama,
-            'buku_judul' => $request->judul
+            'rak_id' => $request->nama,
+            'buku_id' => $request->judul
         ]);
         // alihkan halaman ke halaman rak
         return redirect('/rak_buku');
@@ -96,7 +96,7 @@ class RakBukuController extends Controller
         ->join('rak', 'rak_buku.rak_id', '=', 'rak.rak_id')
         ->select('rak.rak_nama', 'buku.buku_judul', 'buku.buku_jumlah', 'buku.buku_cover', 'rak_buku.id')
         ->where('buku_judul','like',"%".$cari."%")
-        ->paginate();
+        ->get();
  
             // mengirim data pegawai ke view index
         return view('index',['rak_buku' => $rak_buku]);

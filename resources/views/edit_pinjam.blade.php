@@ -15,23 +15,44 @@
 
 	<div class="content">
 		<h3>Edit Pinjam</h3>
-		@foreach($pinjam as $p)
 		<form action="/pinjam/update" method="post">
 		{{ csrf_field() }}
-		<input type="hidden" name="pinjam_id" value="{{ $p->pinjam_id }}">
+		<input type="hidden" name="pinjam_id" value="{{ $pinjam->pinjam_id }}">
 		
-		<p>Judul</p>
-            <p><input type="text" name="judul" required="required" value="{{ $p->buku_judul }}" ></p>
-        <p>Anggota</p>
-            <p><input type="text" name="nama" required="required" value="{{ $p->anggota_nama}}" ></p>
+		<p>Buku Judul </p>
+         	<p><select name="judul">
+                @foreach ($buku as $b) :
+
+                @if ($b->buku_id == $pinjam->buku_id)
+                    <option selected value="{{ $b->buku_id }}">{{ $b->buku_judul }}</option>
+                @else
+                	<option value="{{ $b->buku_id }}">{{ $b->buku_judul }}</option>
+                @endif
+                
+                @endforeach
+            </select></p>
+
+        <p>Nama Anggota </p>
+         	<p><select name="nama">
+                @foreach ($anggota as $a) :
+
+                @if ($a->anggota_id == $pinjam->anggota_id)
+                    <option selected value="{{ $a->anggota_id }}">{{ $a->anggota_nama }}</option>
+                @else
+                	<option value="{{ $a->anggota_id }}">{{ $a->anggota_nama }}</option>
+                @endif
+                
+                @endforeach
+            </select></p>
+
         <p>Tanggal Pinjam</p>
-            <p><input type="date" name="pinjam" required="required" value="{{ $p->tgl_pinjam }}" ></p>
+            <p><input type="date" name="pinjam" required="required" value="{{ $pinjam->tgl_pinjam }}" ></p>
+
         <p>Tanggal Jatuh Tempo</p>
-            <p><input type="date" name="jt" required="required" value="{{ $p->tgl_jatuh_tempo }}" ></p>
+            <p><input type="date" name="jt" required="required" value="{{ $pinjam->tgl_jatuh_tempo }}" ></p>
 
 		<input type="submit" value="Simpan Data" class="btn btn-submit">
 	</form>
-	@endforeach
 	</div>
 </div>
 </body>

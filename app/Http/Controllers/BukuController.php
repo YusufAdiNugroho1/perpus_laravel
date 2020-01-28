@@ -53,8 +53,8 @@ class BukuController extends Controller
     public function edit($id)
     {
         // mengambil data buku berdasarkan id yang dipilih
-        $buku = DB::table('buku')->where('buku_id',$id)->get();
-        // passing data buku yang didapat ke view edit.blade.php
+        $buku = DB::table('buku')->where('buku_id',$id)->first();
+                // passing data buku yang didapat ke view edit.blade.php
         $kategori = Kategori::all();
         // ambil data dari kategori
         return view('edit_buku',['buku' => $buku, 'kategori' => $kategori]);
@@ -65,7 +65,7 @@ class BukuController extends Controller
     public function update(Request $request)
     {
         // update data buku
-        DB::table('buku')->where('buku_id',$request->id)->update([
+        DB::table('buku')->where('buku_id',$request->buku_id)->update([
             'buku_judul' => $request->judul,
             'kategori_id' => $request->kategori,
             'buku_deskripsi' => $request->deskripsi,

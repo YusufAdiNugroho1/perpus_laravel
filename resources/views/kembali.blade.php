@@ -14,24 +14,24 @@
 
         <div class="content">
             <h3>Transaksi Pengembalian Buku</h3>
-            @foreach($kembali as $kem)
-            <form action="/list-pengembalian" method="post">{{ csrf_field() }}
-            <input type="hidden" name="pinjam_id" value="{{ $kem->pinjam_id }}">
+            <form action="/list_pengembalian/store" method="post">
+            {{ csrf_field() }}
+            <input type="hidden" name="pinjam_id" value="{{ $kembali->pinjam_id }}">
 
             <p>Judul</p>
-                <p><input type="text" name="judul" value="{{ $kem->buku_judul }}" disabled></p>
+                    <p><input type="text" name="judul" value="{{ $buku->buku_judul }}" ></p>
             <p>Anggota</p>
-                <p><input type="text" name="nama" value="{{ $kem->anggota_nama}}" disabled></p>
+                <p><input type="text" name="nama" value="{{ $anggota->anggota_nama }}" ></p>
             <p>Tanggal Pinjam</p>
-                <p><input type="date" name="pinjam" value="{{ $kem->tgl_pinjam }}" disabled></p>
+                <p><input type="date" name="pinjam" value="{{ $kembali->tgl_pinjam }}"></p>
             <p>Tanggal Jatuh Tempo</p>
-                <p><input type="date" name="jt" value="{{ $kem->tgl_jatuh_tempo }}" disabled></p>
+                <p><input type="date" name="jt" value="{{ $kembali->tgl_jatuh_tempo }}" ></p>
             <p>Tanggal Kembali</p>
-                <p><input type="date" name="kembali" value="{{date('Y-m-d')}}" disabled></p>
+                <p><input type="date" name="kembali" value="{{date('Y-m-d')}}" ></p>
             <p>Denda</p>
-                <p><input type="text" name="denda" value="" disabled></p>
+                <p><input type="text" name="denda" value="{{ $denda }}" ></p>
+
             <input type="submit" value="Simpan Data" class="btn btn-submit">
-            @endforeach
             </form>
         </div>
 

@@ -31,7 +31,7 @@
             <td>{{ $b->tgl_jatuh_tempo }}</td>
             <td>{{ $b->tgl_kembali }}</td>
             <td>
-                <a href="/pengembalian/hapus/{{ $b->kembali_id }}" class="btn btn-hapus">Hapus</a>
+                <a href="/list-pengembalian/hapus/{{ $b->kembali_id }}" class="btn btn-hapus">Hapus</a>
             </td>
         </tr>
         @endforeach

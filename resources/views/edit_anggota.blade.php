@@ -15,14 +15,13 @@
 
 	<div class="content">
 		<h3>Edit Anggota</h3>
-		@foreach($anggota as $p)
 		<form action="/anggota/update" method="post">
 		{{ csrf_field() }}
-		<input type="hidden" name="id" value="{{ $p->anggota_id }}"> <br/>
+		<input type="hidden" name="id" value="{{ $anggota->anggota_id }}"> <br/>
 		<p>Nama</p> 
-			<p><input type="text" required="required" name="anggota" value="{{ $p->anggota_nama }}"> </p>
+			<p><input type="text" required="required" name="anggota" value="{{ $anggota->anggota_nama }}"> </p>
 		<p>Alamat</p> 
-			<p><input type="text" required="required" name="alamat" value="{{ $p->anggota_alamat }}"></p>
+			<p><input type="text" required="required" name="alamat" value="{{ $anggota->anggota_alamat }}"></p>
 		<p>Jenis Kelamin</p>
             <p><select name="jk">
                  @if (count('anggota_jk') == "L") : 
@@ -34,10 +33,9 @@
                  @endif
             </select></p>
         <p>Telepon</p>
-        	<p><input type="text" name="telp" value="{{ $p->anggota_telp }}"></p>
+        	<p><input type="text" name="telp" value="{{ $anggota->anggota_telp }}"></p>
 		<input type="submit" value="Simpan Data" class="btn btn-submit">
 	</form>
-	@endforeach
 	</div>
 </div>
 </body>

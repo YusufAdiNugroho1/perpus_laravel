@@ -17,11 +17,6 @@
                 <li><a href="pinjam">Peminjaman</a></li>
                 <li><a href="list-pengembalian">Pengembalian</a></li>
                 <li><a href="rak_buku">Letak Buku</a></li>
-                @if (Route::has('register'))
-                <li>
-                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-                @endif
                 <li class="nav-item">
                     <div class="menu" aria-labelledby="navbar">
                         <a class="item" href="{{ route('logout') }}"

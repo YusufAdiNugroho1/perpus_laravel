@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 Route::get('/', 'IndexController@index');
-Route::get('/index/cari','IndexController@cari');
+Route::get('/cari','IndexController@cari');
 Route::get('/buku','BukuController@buku');
 Route::get('/buku/tambah_buku','BukuController@tambah');
 Route::post('/buku/store','BukuController@store');
@@ -37,7 +37,6 @@ Route::post('/rak/store', 'RakController@store');
 Route::get('/rak/edit_rak/{id}','RakController@edit');
 Route::post('/rak/update','RakController@update');
 Route::get('/rak/hapus/{id}','RakController@hapus');
-Route::get('/rak_buku', 'RakBukuController@rak_buku');
 Route::get('/rak_buku/cari','RakBukuController@cari');
 Route::get('/rak_buku/tambah_rak_buku','RakBukuController@tambah');
 Route::post('/rak_buku/store', 'RakBukuController@store');
@@ -47,6 +46,7 @@ Route::get('/rak_buku/hapus/{id}','RakBukuController@hapus');
 Route::get('/pinjam/kembali/{id}', 'PengembalianController@kembali');
 Route::post('/list_pengembalian/store','PengembalianController@store');
 Route::get('/list_pengembalian', 'PengembalianController@pengembalian');
+Route::get('/list_pengembalian/hapus/{id}','PengembalianController@hapus');
 Route::get('/pinjam', 'PinjamController@pinjam');
 Route::get('/pinjam/tambah_pinjam','PinjamController@tambah');
 Route::post('/pinjam/store','PinjamController@store');

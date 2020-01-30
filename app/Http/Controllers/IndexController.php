@@ -29,7 +29,7 @@ class IndexController extends Controller
         ->join('rak', 'rak_buku.rak_id', '=', 'rak.rak_id')
         ->select('rak.rak_nama', 'buku.buku_judul', 'buku.buku_jumlah', 'buku.buku_cover', 'rak_buku.id')
         ->where('buku_judul','like',"%".$cari."%")
-        ->paginate();
+        ->get();
  
             // mengirim data pegawai ke view index
         return view('index',['rak_buku' => $rak_buku]);

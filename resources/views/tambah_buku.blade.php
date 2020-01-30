@@ -16,17 +16,30 @@
     <div class="content">
         <h3>Tambah Data buku</h3>
         <form action="/buku/store" method="post">{{ csrf_field() }}
-        <p>Judul</p><input type="text" name="judul"><br>
+        <p>Judul</p>
+
+            <p><input type="text" name="judul"></p>
+
         <p>Kategori</p>
-            <select name="kategori">
+
+            <p><select name="kategori">
                 @foreach ($kategori as $b) :
                      <option value="{{ $b->kategori_id }}">{{ $b->kategori_nama }}</option>
                 @endforeach
-            </select><br>
-        <p>Deskripsi</p><input name="deskripsi"><br>
-        <p>Jumlah</p><input type="text" name="jumlah"><br>
-        <p>cover</p><input type="file" name="cover"></p>
-        <br><br>
+            </select></p>
+
+        <p>Deskripsi</p>
+
+            <p><input name="deskripsi"></p>
+
+        <p>Jumlah</p>
+
+            <p><input type="text" name="jumlah"></p>
+
+        <p>cover</p>
+
+            <p><input type="file" name="cover"></p>
+
         <input type="submit" value="Simpan Data" class="btn btn-submit">
         <input type="reset" class="btn btn-submit" value="Batal">
         </form>

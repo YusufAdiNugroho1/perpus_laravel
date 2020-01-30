@@ -40,7 +40,7 @@ class AnggotaController extends Controller
     public function edit($id)
     {
         // mengambil data anggota berdasarkan id yang dipilih
-        $anggota = DB::table('anggota')->where('anggota_id',$id)->get();
+        $anggota = DB::table('anggota')->where('anggota_id',$id)->first();
         // passing data anggota yang didapat ke view edit.blade.php
         return view('edit_anggota',['anggota' => $anggota]);
  

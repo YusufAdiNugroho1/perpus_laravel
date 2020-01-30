@@ -10,7 +10,7 @@
     </div>
    <center> 
 	<h1 style="margin-top: 120px;">My Perpus</h1>
-	<form action="/rak_buku/cari" method="GET">
+	<form action="/cari" method="GET">
 		<input type="text" name="cari" class="search" placeholder="Cari buku .." value="{{ old('cari') }}">
 		<input type="submit" value="CARI" class="submit">
 	</form>

@@ -36,7 +36,7 @@ class PengembalianController extends Controller
             $denda =0;
         } else {
             $denda = 500 * $cc;
-        }
+        } 
 
         return view('kembali',['kembali' => $kembali, 'buku' => $buku, 'anggota' => $anggota, 'denda' => $denda]);
     }
@@ -55,7 +55,7 @@ class PengembalianController extends Controller
     }
     public function hapus($id)
     {
-        DB::table('pinjam')->where('pinjam_id',$id)->delete();
+        DB::table('kembali')->where('kembali_id',$id)->delete();
         
         return redirect('/list-pengembalian');
     }
